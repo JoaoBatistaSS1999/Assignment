@@ -1,13 +1,24 @@
 import React from "react";
-import Header from "./components/header";
-import GlobalStyle from "./styles/GlobalStyle";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./style.css";
+
+import { ContextProvider } from "./context/appContext";
+import NFTDisplay from "./pages/nftDisplay";
+import TokenBalances from "./pages/tokenBalances";
+import Home from "./pages/home";
 
 function App() {
   return (
-    <React.Fragment>
-      <GlobalStyle />
-      <Header />
-    </React.Fragment>
+    <ContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />}>
+            <Route path='/nfts' element={<NFTDisplay />} />
+            <Route path='/tokenbalances' element={<TokenBalances />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ContextProvider>
   );
 }
 

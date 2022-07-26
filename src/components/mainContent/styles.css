@@ -1,0 +1,40 @@
+@import "antd/dist/antd.css";
+
+.container {
+  background-color: aliceblue;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonContainer {
+  width: 100%;
+  padding: 20px 50px;
+  background-color: rgb(47, 47, 40);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.link {
+  width: 30%;
+}
+
+.content {
+  width: 100%;
+  flex-grow: 1;
+  background-color: aqua;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.title {
+  background-color: blueviolet;
+  margin: 0;
+}
