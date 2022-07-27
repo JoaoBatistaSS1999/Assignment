@@ -18,7 +18,7 @@ const Header: React.FC = () => {
 
   return (
     <nav className={styles.container}>
-      <h1 className='logo'>Criptonomia Project</h1>
+      <h1 className={styles.logo}>Criptnomia Project</h1>
 
       <Button
         type='primary'
