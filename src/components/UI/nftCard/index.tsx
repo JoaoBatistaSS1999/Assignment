@@ -21,7 +21,7 @@ const NFTCard: React.FC<Props> = ({ title, description, img }) => {
   return (
     <Card
       hoverable
-      style={{ width: 200, backgroundColor: "#ffffff" }}
+      style={{ width: 270, backgroundColor: "#fff" }}
       cover={avatar}
       loading={isLoading}>
       <Meta title={title} description={description} />

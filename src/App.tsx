@@ -13,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}>
+            <Route path='/' element={<NFTDisplay />} />
             <Route path='/nfts' element={<NFTDisplay />} />
             <Route path='/tokenbalances' element={<TokenBalances />} />
           </Route>

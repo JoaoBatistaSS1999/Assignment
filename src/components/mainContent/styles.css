@@ -1,6 +1,7 @@
 @import "antd/dist/antd.css";
 
 .container {
+  position: relative;
   background-color: #e4e4af;
   min-height: calc(100vh - 60px);
   width: 100%;
@@ -10,10 +11,10 @@
 }
 
 .buttonContainer {
+  height: 70px;
   width: 100%;
-  padding: 20px 50px;
+  padding: 20px 10px;
   background-color: #454545;
-  /* border-bottom: 1px solid #2b2b2b; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   display: flex;
@@ -23,16 +24,15 @@
   gap: 10px;
 }
 
-.link {
-  width: 30%;
-}
-
 .content {
+  /* position: relative; */
   width: 100%;
   background-color: #e4e4af;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .title {
@@ -40,7 +40,58 @@
   margin: 0;
 }
 
+.link {
+  width: 30%;
+  min-width: 140px;
+}
+
 .place-holder {
   width: 600px;
   height: 400px;
+}
+
+.example {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.526);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1020px) {
+  .link {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 650px) {
+  .place-holder {
+    width: 450px;
+    height: 300px;
+  }
+
+  .link {
+    min-width: 140px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 451px) {
+  .place-holder {
+    width: 300px;
+    height: 200px;
+  }
+  .title {
+    text-align: center;
+  }
 }
