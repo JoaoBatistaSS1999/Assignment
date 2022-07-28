@@ -23,6 +23,14 @@
   color: #fff;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
 @media (max-width: 600px) {
   .logo {
     font-size: 18px;
@@ -31,5 +39,15 @@
 @media (max-width: 330px) {
   .container {
     padding: 0px 10px;
+  }
+}
+@media (max-width: 460px) {
+  .container {
+    flex-direction: column;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 }

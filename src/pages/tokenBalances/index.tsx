@@ -1,61 +1,73 @@
-import { Avatar, List } from "antd";
-import React from "react";
+import { List } from "antd";
+import React, { useEffect, useState } from "react";
+import { useContextComponent } from "../../context/appContext";
+import { useMoralisWeb3Api } from "react-moralis";
 import styles from "./styles.module.css";
-const data = [
-  {
-    title: "Ant Design Title 1",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-  {
-    title: "Ant Design Title 4",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-  {
-    title: "Ant Design Title 4",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-  {
-    title: "Ant Design Title 4",
-  },
-];
+import TokenCard from "../../components/UI/tokenCard";
 
-const TokenBalances: React.FC = () => (
-  <div className={styles.container}>
-    <List
-      loading={false}
-      bordered={true}
-      dataSource={data}
-      split={true}
-      style={{ width: 600 }}
-      header='ERC-20 Token Balance'
-      renderItem={(item) => (
-        <List.Item>
-          <List.Item.Meta
-            avatar={
-              <Avatar src='https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.beingcrypto.com%2Fwp-content%2Fuploads%2F2018%2F02%2Ftether.png&f=1&nofb=1' />
-            }
-            title='Token Name'
-            description='Amount'
+interface ITokenData {
+  name: string;
+  symbol: string;
+  logo: string;
+  balance: string;
+}
+
+const TokenBalances: React.FC = () => {
+  const Web3Api = useMoralisWeb3Api();
+
+  const { isLoading, setIsLoading, address, isConnected } =
+    useContextComponent();
+
+  const [tokenData, setTokenData] = useState<ITokenData[]>([]);
+
+  const options = {
+    address: address,
+  };
+
+  /////////////////////////////////
+
+  const fetchTokenBalances = async () => {
+    const balances = await Web3Api.account.getTokenBalances(options);
+
+    const tokensInfo: ITokenData[] = balances.map((e) => {
+      return {
+        balance: e.balance,
+        logo: e.logo ? e.logo : "",
+        symbol: e.symbol,
+        name: e.name,
+      };
+    });
+
+    setTokenData(tokensInfo);
+    setIsLoading(false);
+  };
+
+  /////////////////////////////////
+  useEffect(() => {
+    setIsLoading(true);
+    fetchTokenBalances();
+  }, []);
+
+  return (
+    <div className={styles.container}>
+      <List
+        bordered
+        split
+        loading={isLoading}
+        dataSource={tokenData}
+        style={{ width: 600 }}
+        header='ERC-20 Token Balance'
+        renderItem={(item) => (
+          <TokenCard
+            name={item.name}
+            symbol={item.symbol}
+            logo={item.logo}
+            balance={item.balance}
           />
-        </List.Item>
-      )}
-    />
-  </div>
-);
+        )}
+      />
+    </div>
+  );
+};
 
 export default TokenBalances;

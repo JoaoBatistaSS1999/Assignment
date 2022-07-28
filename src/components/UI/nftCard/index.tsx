@@ -2,8 +2,6 @@ import { Card } from "antd";
 import { useContextComponent } from "../../../context/appContext";
 import "./styles.module.css";
 
-import nft from "../../../assets/nft.png";
-
 interface Props {
   title: string;
   description: string;
@@ -11,12 +9,11 @@ interface Props {
 }
 
 const NFTCard: React.FC<Props> = ({ title, description, img }) => {
-  const { isConnected, setIsConnected, isLoading, setIsLoading } =
+  const { isConnected, setIsConnected, isLoading, setIsLoading, address } =
     useContextComponent();
 
   const { Meta } = Card;
-
-  const avatar = <img src={nft} alt='nft' />;
+  const avatar = <img src={img} alt='nft' />;
 
   return (
     <Card
