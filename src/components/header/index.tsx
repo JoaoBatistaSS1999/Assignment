@@ -51,7 +51,7 @@ const Header: React.FC = () => {
     }
 
     isAuthenticated && setIsConnected(true);
-    openLogInNotification();
+    isAuthenticated && openLogInNotification();
   };
 
   const logOut = async () => {
