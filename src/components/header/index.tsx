@@ -12,36 +12,37 @@ declare global {
 }
 
 const Header: React.FC = () => {
-  const { authenticate, isAuthenticated, logout } = useMoralis();
+  const { authenticate, isAuthenticated, logout, user } = useMoralis();
   const { address, setAddress, isConnected, setIsConnected, setIsConnecting } =
     useContextComponent();
   const isMetamaskIsntalled = window.ethereum;
-  const shortAddress = address.slice(0, 5) + "..." + address.slice(-5);
+  const shortAddress = address?.slice(0, 5) + "..." + address?.slice(-5);
 
   const login = async () => {
     if (!isMetamaskIsntalled) return installMetamaskNotification();
 
     if (!isAuthenticated) {
       setIsConnecting(true);
+
       await authenticate({ signingMessage: "Log in using Moralis" })
         .then(function (user) {
           setAddress(user!.get("ethAddress"));
           console.log("im then");
-          console.log(address);
         })
         .catch(function (error) {
           setIsConnecting(false);
-          console.log("catch error");
           cancelWalletConnectionNotification();
+          console.log("im catch");
         });
 
-      // setIsConnecting(false);
-
-      console.log(address);
-      console.log(isAuthenticated);
-      console.log("-----------------bottom of login-------------------");
+      setIsConnecting(false);
     }
   };
+
+  useEffect(() => {
+    setIsConnected(isAuthenticated);
+    setAddress(user?.attributes.ethAddress);
+  }, [isAuthenticated]);
 
   const logOut = async () => {
     await logout();
