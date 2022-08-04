@@ -46,7 +46,7 @@ const TokenBalances: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
     fetchTokenBalances();
-  }, []);
+  }, [isConnected]);
 
   return (
     <div className={styles.container}>
