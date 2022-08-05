@@ -1,6 +1,6 @@
 <div>
   <h1>Assignment Project</h1>
-  <p>The goal of this project is to create a frontend that is able to connect with metamask and display NFTs & Tokens of the user. All of that using the Moralis API, Typescript and Ant Design (and a little bit of Ethers.js, although it wasn't ACTUALLY needed). Feel free to fork🙃</p><br>
+  <p>The goal of this project is to create a frontend that is able to connect with metamask and display NFTs & Tokens of the user. All of that using the Moralis API, Typescript and Ant Design (and a little bit of Ethers.js, although it wasn't ACTUALLY needed). Feel free to fork 🙃.</p><br>
   
   
   <h2>📝Features to add</h2><br>
