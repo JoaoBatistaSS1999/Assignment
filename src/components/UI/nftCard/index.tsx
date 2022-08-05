@@ -11,7 +11,6 @@ interface Props {
 
 const NFTCard: React.FC<Props> = ({ title, description, img }) => {
   const { isLoading } = useContextComponent();
-  const nftPlaceHolder = nftIcon;
 
   const { Meta } = Card;
 

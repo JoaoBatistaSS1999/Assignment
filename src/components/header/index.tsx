@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, notification } from "antd";
 import styles from "./styles.module.css";
 import { useContextComponent } from "../../context/appContext";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useChain } from "react-moralis";
 import { ethers } from "ethers";
 
 declare global {
@@ -12,10 +12,18 @@ declare global {
 }
 
 const Header: React.FC = () => {
-  const { authenticate, isAuthenticated, logout, user } = useMoralis();
+  const {
+    authenticate,
+    isAuthenticated,
+    logout,
+    user,
+    isWeb3Enabled,
+    enableWeb3,
+  } = useMoralis();
   const { address, setAddress, isConnected, setIsConnected, setIsConnecting } =
     useContextComponent();
   const isMetamaskIsntalled = window.ethereum;
+  const { switchNetwork, chainId, chain } = useChain();
   const shortAddress = address?.slice(0, 5) + "..." + address?.slice(-5);
 
   const login = async () => {
@@ -27,12 +35,11 @@ const Header: React.FC = () => {
       await authenticate({ signingMessage: "Log in using Moralis" })
         .then(function (user) {
           setAddress(user!.get("ethAddress"));
-          console.log("im then");
+          openLogInNotification();
         })
         .catch(function (error) {
           setIsConnecting(false);
           cancelWalletConnectionNotification();
-          console.log("im catch");
         });
 
       setIsConnecting(false);

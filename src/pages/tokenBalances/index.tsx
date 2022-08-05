@@ -24,8 +24,6 @@ const TokenBalances: React.FC = () => {
     address: address,
   };
 
-  /////////////////////////////////
-
   const fetchTokenBalances = async () => {
     const balances = await Web3Api.account.getTokenBalances(options);
 
@@ -42,11 +40,10 @@ const TokenBalances: React.FC = () => {
     setIsLoading(false);
   };
 
-  /////////////////////////////////
   useEffect(() => {
     setIsLoading(true);
     fetchTokenBalances();
-  }, [isConnected]);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -56,7 +53,7 @@ const TokenBalances: React.FC = () => {
         loading={isLoading}
         dataSource={tokenData}
         style={{ width: 600 }}
-        header='ERC-20 Token Balance'
+        header='ERC-20 Mainnet Tokens'
         renderItem={(item) => (
           <TokenCard
             name={item.name}
