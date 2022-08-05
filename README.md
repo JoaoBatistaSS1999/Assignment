@@ -1,5 +1,5 @@
 <div>
-  <h2>📝Features to add?</h2><br>
+  <h2>📝Features to add</h2><br>
   <ul>
     <li>✨Button to change network</li><br>
     <li>
